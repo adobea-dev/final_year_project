@@ -7,10 +7,10 @@ The agentic ai comprises of the;
 
 i. Data Layer. The data layer is where our system gets real-world signals about each dealer. The data layer is syntesized data containing sales , financing data, dealer tier, collateral monitoring and dealer visits.
 
-ii. 2. Dynamic Scoring & Monitoring Layer
+ii.Dynamic Scoring & Monitoring Layer
 This is the analytics engine it takes in data and recalculates "Dealer Health” automatically.
 
-iii. Reasoning & Recommendation Layer (Agentic AI)
+iii.Reasoning & Recommendation Layer (Agentic AI)
 
 Here’s where the AI begins to “think.” This layer uses those data signals to reason:
 It’s agentic because it can: Monitor → interpret → act and autonomously suggest next steps. The goal is to make the system proactive, not reactive.
