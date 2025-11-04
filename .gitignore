@@ -205,3 +205,33 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Ignore virtual environment and model files
+# Virtual environments
+venv/
+.env/
+.envrc/
+.venv/
+agenticpro/
+
+*.pt
+*.pth
+*.bin
+*.pkl
+*.ckpt
+*.h5
+*.tflite
+*.onnx
+
+# Ignore Hugging Face / model directories
+models/
+model/
+saved_models/
+cache/
+__pycache__/
+
+# Ignore large data or logs
+data/
+datasets/
+logs/
+*.log

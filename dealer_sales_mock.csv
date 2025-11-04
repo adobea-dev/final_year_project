@@ -1,0 +1,51 @@
+transaction_id,country,fulfillment_date,gmv_in_dollar,Product_Classification,lead_source,Loan_ID,Financing_Bank,Channel,Dealer_Source_Name,Dealer_Source_id,Is_this_a_Reversal,sourcedata,new_am
+T001,Kenya,2025-03-23,2983.89,Repossessed Assets,Dealer Referral,LN0001,UBA,Equity Release,Elite Cars,D004,No,regina.essien@autochek.africa,Regina Essien
+T002,Nigeria,2025-05-01,6605.71,Dealer Marketplace,Walk-in,LN0002,GTBank,Cash Imports,Elite Cars,D004,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T003,Senegal,2025-03-06,9645.67,Local Trade,Website,LN0003,GTBank,Repossessed Assets,Elite Cars,D004,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T004,Senegal,2025-09-11,6411.26,Equity Release,Dealer Referral,LN0004,UBA,Repossessed Assets,AutoKing Motors,D001,No,regina.essien@autochek.africa,Regina Essien
+T005,Uganda,2025-06-24,15348.51,Equity Release,Website,LN0005,UBA,Cash Imports,DriveHub,D005,Yes,regina.essien@autochek.africa,Regina Essien
+T006,Ghana,2025-10-17,2833.76,Equity Release,Autochek App,LN0006,UBA,Repossessed Assets,DriveHub,D005,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T007,Ghana,2025-08-25,9463.02,Repossessed Assets,Website,LN0007,UBA,Equity Release,Elite Cars,D004,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T008,Nigeria,2025-08-07,5941.4,Equity Release,Dealer Referral,LN0008,Access Bank,Local Trade Finance,SpeedWheels,D003,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T009,Kenya,2025-02-05,8494.51,Dealer Marketplace,Autochek App,LN0009,Zenith Bank,Marketplace,SpeedWheels,D003,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T010,Nigeria,2025-06-24,17553.27,Dealer Marketplace,Website,LN0010,Zenith Bank,Equity Release,Prime Auto Ltd,D002,Yes,regina.essien@autochek.africa,Regina Essien
+T011,Uganda,2025-04-11,13209.9,Repossessed Assets,Autochek App,LN0011,Access Bank,Equity Release,Prime Auto Ltd,D002,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T012,Senegal,2025-07-11,6616.35,Local Trade,Autochek App,LN0012,UBA,Repossessed Assets,SpeedWheels,D003,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T013,Uganda,2025-08-18,19341.38,Repossessed Assets,Walk-in,LN0013,UBA,Repossessed Assets,AutoKing Motors,D001,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T014,Uganda,2025-09-09,7867.66,Dealer Marketplace,Website,LN0014,Access Bank,Repossessed Assets,Prime Auto Ltd,D002,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T015,Senegal,2025-02-09,16296.19,Equity Release,Dealer Referral,LN0015,Access Bank,Local Trade Finance,AutoKing Motors,D001,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T016,Ghana,2025-07-02,4570.82,Local Trade,Walk-in,LN0016,Access Bank,Local Trade Finance,Prime Auto Ltd,D002,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T017,Nigeria,2025-10-02,2041.18,Repossessed Assets,Dealer Referral,LN0017,Access Bank,Local Trade Finance,DriveHub,D005,Yes,regina.essien@autochek.africa,Regina Essien
+T018,Ghana,2025-02-24,16087.82,Imports,Website,LN0018,GTBank,Marketplace,AutoKing Motors,D001,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T019,Ghana,2025-01-26,3064.6,Dealer Marketplace,Walk-in,LN0019,Access Bank,Repossessed Assets,SpeedWheels,D003,Yes,regina.essien@autochek.africa,Regina Essien
+T020,Senegal,2025-06-21,10146.2,Repossessed Assets,Dealer Referral,LN0020,Access Bank,Local Trade Finance,Elite Cars,D004,Yes,regina.essien@autochek.africa,Regina Essien
+T021,Kenya,2025-03-01,19819.51,Equity Release,Website,LN0021,Zenith Bank,Cash Imports,Prime Auto Ltd,D002,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T022,Ghana,2025-06-16,12406.09,Repossessed Assets,Autochek App,LN0022,UBA,Local Trade Finance,DriveHub,D005,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T023,Kenya,2025-02-25,18121.51,Repossessed Assets,Website,LN0023,Zenith Bank,Cash Imports,Elite Cars,D004,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T024,Uganda,2025-07-17,9684.84,Local Trade,Website,LN0024,Zenith Bank,Cash Imports,Elite Cars,D004,Yes,regina.essien@autochek.africa,Regina Essien
+T025,Uganda,2025-03-06,14568.32,Imports,Dealer Referral,LN0025,Zenith Bank,Equity Release,AutoKing Motors,D001,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T026,Nigeria,2025-02-11,7970.36,Equity Release,Website,LN0026,Zenith Bank,Marketplace,DriveHub,D005,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T027,Senegal,2025-10-06,17752.28,Equity Release,Dealer Referral,LN0027,GTBank,Local Trade Finance,DriveHub,D005,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T028,CIV,2025-07-06,3234.63,Local Trade,Website,LN0028,Access Bank,Equity Release,Prime Auto Ltd,D002,No,regina.essien@autochek.africa,Regina Essien
+T029,Senegal,2025-02-28,9950.45,Dealer Marketplace,Dealer Referral,LN0029,GTBank,Local Trade Finance,Prime Auto Ltd,D002,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T030,Ghana,2025-04-02,3799.38,Dealer Marketplace,Walk-in,LN0030,Access Bank,Cash Imports,Prime Auto Ltd,D002,No,regina.essien@autochek.africa,Regina Essien
+T031,Kenya,2025-04-08,4815.0,Local Trade,Autochek App,LN0031,Access Bank,Repossessed Assets,Prime Auto Ltd,D002,No,regina.essien@autochek.africa,Regina Essien
+T032,Senegal,2025-05-20,5721.48,Imports,Walk-in,LN0032,Zenith Bank,Repossessed Assets,AutoKing Motors,D001,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T033,Kenya,2025-10-03,19107.06,Local Trade,Website,LN0033,UBA,Local Trade Finance,SpeedWheels,D003,Yes,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T034,Kenya,2025-01-29,5444.95,Local Trade,Dealer Referral,LN0034,Zenith Bank,Repossessed Assets,AutoKing Motors,D001,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T035,Kenya,2025-10-27,14820.33,Equity Release,Website,LN0035,Access Bank,Cash Imports,DriveHub,D005,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T036,Uganda,2025-06-23,15007.15,Equity Release,Autochek App,LN0036,GTBank,Equity Release,DriveHub,D005,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T037,Uganda,2025-06-21,7136.4,Repossessed Assets,Walk-in,LN0037,Zenith Bank,Equity Release,DriveHub,D005,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T038,Senegal,2025-09-09,4150.5,Imports,Dealer Referral,LN0038,Zenith Bank,Equity Release,Elite Cars,D004,No,regina.essien@autochek.africa,Regina Essien
+T039,Senegal,2025-04-07,19337.05,Imports,Autochek App,LN0039,Access Bank,Local Trade Finance,SpeedWheels,D003,No,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T040,Nigeria,2025-02-27,16126.8,Dealer Marketplace,Dealer Referral,LN0040,GTBank,Marketplace,Prime Auto Ltd,D002,Yes,regina.essien@autochek.africa,Regina Essien
+T041,CIV,2025-08-01,5874.91,Dealer Marketplace,Walk-in,LN0041,Access Bank,Marketplace,DriveHub,D005,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T042,Ghana,2025-05-18,19235.81,Repossessed Assets,Autochek App,LN0042,Access Bank,Equity Release,SpeedWheels,D003,No,regina.essien@autochek.africa,Regina Essien
+T043,Ghana,2025-09-15,9243.06,Repossessed Assets,Dealer Referral,LN0043,GTBank,Cash Imports,DriveHub,D005,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T044,Nigeria,2025-03-16,14620.11,Local Trade,Dealer Referral,LN0044,Zenith Bank,Cash Imports,Elite Cars,D004,No,regina.essien@autochek.africa,Regina Essien
+T045,Uganda,2025-07-29,4366.13,Imports,Autochek App,LN0045,GTBank,Cash Imports,SpeedWheels,D003,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T046,Uganda,2025-04-23,19759.7,Equity Release,Walk-in,LN0046,UBA,Cash Imports,Prime Auto Ltd,D002,Yes,regina.essien@autochek.africa,Regina Essien
+T047,Senegal,2025-03-19,9018.68,Dealer Marketplace,Dealer Referral,LN0047,Zenith Bank,Local Trade Finance,DriveHub,D005,Yes,solomon.aj@autochek.africa,Solomon Annag-Johnson
+T048,Kenya,2025-01-25,4412.87,Imports,Walk-in,LN0048,GTBank,Local Trade Finance,AutoKing Motors,D001,No,samuel.schmidgall@autochek.africa,Samuel Schmidgall
+T049,Nigeria,2025-08-05,16705.37,Equity Release,Dealer Referral,LN0049,Zenith Bank,Repossessed Assets,SpeedWheels,D003,No,regina.essien@autochek.africa,Regina Essien
+T050,Kenya,2025-06-10,17200.97,Imports,Website,LN0050,UBA,Cash Imports,Elite Cars,D004,Yes,regina.essien@autochek.africa,Regina Essien
