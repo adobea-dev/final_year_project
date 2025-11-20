@@ -235,3 +235,16 @@ data/
 datasets/
 logs/
 *.log
+
+# Ollama models cache
+~/.ollama/
+ollama/
+
+#Postgres
+*.sql
+*.dump
+*.bak
+
+#Duckdb
+*.duckdb
+*.db
