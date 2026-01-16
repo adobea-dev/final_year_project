@@ -1,19 +1,18 @@
+# config/models_config.py
+from __future__ import annotations
+
+from google.adk.models.lite_llm import LiteLlm
+from config.settings import settings
+
+
 class ModelConfig:
     """
     Configuration for all LLM, vector DB, and embedding parameters.
     """
 
-    # === LLM MODEL ===
-    OLLAMA_MODEL = "tinyllama"     
-
-    # === Embeddings ===
-    EMBEDDING_MODEL = "all-minilm"  
-    # === VectorDB ===
-    VECTOR_DB_PATH = "vectordb/autochek_index"
-
-    # === Chunking for documents ===
-    CHUNK_SIZE = 500
-    CHUNK_OVERLAP = 50
+    @staticmethod
+    def get_ollama_model() -> LiteLlm:
+        return LiteLlm(model=f"ollama/{settings.DEFAULT_MODEL}")
 
 
 model_config = ModelConfig()

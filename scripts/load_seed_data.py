@@ -63,10 +63,12 @@ def read_csv(filename: str) -> pd.DataFrame:
 
 
 def reset_tables(engine) -> None:
+    # Add dealer_scores so you always start clean before reloading seed data and recomputing scores later.
     with engine.begin() as conn:
         conn.exec_driver_sql(
             """
             TRUNCATE TABLE
+                dealer_scores,
                 dealer_activity_metrics,
                 sales,
                 applications,
@@ -108,7 +110,10 @@ def align_df_to_table(engine, table_name: str, df: pd.DataFrame) -> pd.DataFrame
         df = df.drop(columns=extra)
 
     # 2) Check required columns (NOT NULL + no default) exist in df
-    required = schema[(schema["is_nullable"] == "NO") & (schema["column_default"].isna())]["column_name"].tolist()
+    required = schema[
+        (schema["is_nullable"] == "NO") & (schema["column_default"].isna())
+    ]["column_name"].tolist()
+
     missing_required = [c for c in required if c not in df.columns]
     if missing_required:
         raise ValueError(
@@ -124,11 +129,8 @@ def align_df_to_table(engine, table_name: str, df: pd.DataFrame) -> pd.DataFrame
 
         if t in ("integer", "bigint", "smallint"):
             df[col] = pd.to_numeric(df[col], errors="coerce")
-
-            # If required, fill missing with 0 (common for count fields)
             if col in required:
                 df[col] = df[col].fillna(0)
-
             df[col] = df[col].astype("Int64")  # nullable int
 
         elif t in ("numeric", "double precision", "real", "decimal"):
@@ -143,15 +145,15 @@ def align_df_to_table(engine, table_name: str, df: pd.DataFrame) -> pd.DataFrame
             df[col] = pd.to_datetime(df[col], errors="coerce")
 
         elif t == "boolean":
-            # normalize common bool strings/numbers
             df[col] = df[col].map(
-                lambda x: True if str(x).strip().lower() in ("true", "t", "1", "yes", "y") else
-                          False if str(x).strip().lower() in ("false", "f", "0", "no", "n") else
-                          None
+                lambda x: True
+                if str(x).strip().lower() in ("true", "t", "1", "yes", "y")
+                else False
+                if str(x).strip().lower() in ("false", "f", "0", "no", "n")
+                else None
             )
 
         elif t == "uuid":
-            # generate UUIDs only if this uuid column is required and has nulls
             if col in required:
                 mask = df[col].isna()
                 if mask.any():
@@ -211,12 +213,7 @@ def fix_listings(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     if "price" in df.columns:
-        df["price"] = (
-            df["price"]
-            .astype(str)
-            .str.replace(",", "", regex=False)
-            .str.strip()
-        )
+        df["price"] = df["price"].astype(str).str.replace(",", "", regex=False).str.strip()
         df["price"] = pd.to_numeric(df["price"], errors="coerce")
 
     return df
@@ -233,6 +230,8 @@ def fix_applications(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     if "lead_date" in df.columns:
         df["lead_date"] = pd.to_datetime(df["lead_date"], errors="coerce").dt.date
+    if "application_date" in df.columns:
+        df["application_date"] = pd.to_datetime(df["application_date"], errors="coerce").dt.date
     return df
 
 
@@ -246,6 +245,22 @@ def fix_sales(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def fix_metrics(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Make dealer_activity_metrics compatible with the Postgres schema.
+
+    Important: scoring_agent expects:
+      - sales_units
+      - sales_growth
+      - inventory_update_count
+      - applications_count
+      - leads_count
+
+    Some datasets may instead contain:
+      - sales_count
+      - active_listings
+
+    This function derives the expected columns so you do not end up inserting NULLs.
+    """
     df = df.copy()
 
     if "period_start_date" in df.columns:
@@ -253,15 +268,48 @@ def fix_metrics(df: pd.DataFrame) -> pd.DataFrame:
     if "period_end_date" in df.columns:
         df["period_end_date"] = pd.to_datetime(df["period_end_date"], errors="coerce").dt.date
 
-    # Counts should always be integers
-    for c in ["active_listings", "applications_count", "sales_count", "leads_count"]:
+    # Create schema-compatible columns if the dataset used alternate names
+    if "sales_units" not in df.columns and "sales_count" in df.columns:
+        df["sales_units"] = df["sales_count"]
+
+    if "inventory_update_count" not in df.columns and "active_listings" in df.columns:
+        df["inventory_update_count"] = df["active_listings"]
+
+    # Ensure sales_growth exists and is not NULL (proxy from sales_units if needed)
+    if "sales_growth" not in df.columns:
+        df["sales_growth"] = 0.0
+
+    df["sales_growth"] = pd.to_numeric(df["sales_growth"], errors="coerce")
+
+    if "sales_units" in df.columns:
+        df["sales_units"] = pd.to_numeric(df["sales_units"], errors="coerce").fillna(0).astype(int)
+        df["sales_growth"] = df["sales_growth"].fillna(df["sales_units"].astype(float))
+
+    df["sales_growth"] = df["sales_growth"].fillna(0.0)
+
+    # Some datasets may have gmv_in_dollars rather than gmv_total in the metrics table
+    if "gmv_total" not in df.columns and "gmv_in_dollars" in df.columns:
+        df["gmv_total"] = df["gmv_in_dollars"]
+
+    # Force integer counts (whichever exist)
+    for c in [
+        "active_listings",
+        "applications_count",
+        "sales_count",
+        "leads_count",
+        "sales_units",
+        "inventory_update_count",
+    ]:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0).astype(int)
 
     if "gmv_total" in df.columns:
         df["gmv_total"] = pd.to_numeric(df["gmv_total"], errors="coerce").fillna(0.0)
 
-    df = df.drop_duplicates(subset=["dealer_id", "country", "period_start_date", "period_end_date"])
+    # Keep one row per dealer per period per country
+    dedupe_cols = [c for c in ["dealer_id", "country", "period_start_date", "period_end_date"] if c in df.columns]
+    if dedupe_cols:
+        df = df.drop_duplicates(subset=dedupe_cols)
 
     return df
 

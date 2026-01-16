@@ -1,16 +1,15 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-import duckdb
+from sqlalchemy.orm import sessionmaker
 
-Base = declarative_base()
+from .settings import settings
+
 
 class DatabaseConfig:
-    """
-    Provides connections to both Postgres and DuckDB.
-    """
-
-    POSTGRES_URL = "postgresql+psycopg2://postgres:Autochek123@127.0.0.1:5432/dealer_ai"
-
+    # Build the URL from environment driven settings
+    POSTGRES_URL = (
+        f"postgresql+psycopg2://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}"
+        f"@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}"
+    )
 
     _engine = None
     _SessionLocal = None
@@ -18,18 +17,19 @@ class DatabaseConfig:
     @staticmethod
     def get_postgres_engine():
         if DatabaseConfig._engine is None:
-            DatabaseConfig._engine = create_engine(DatabaseConfig.POSTGRES_URL, pool_pre_ping=True)
+            DatabaseConfig._engine = create_engine(
+                DatabaseConfig.POSTGRES_URL,
+                pool_pre_ping=True,
+            )
         return DatabaseConfig._engine
 
     @staticmethod
     def get_postgres_session():
         if DatabaseConfig._SessionLocal is None:
             engine = DatabaseConfig.get_postgres_engine()
-            DatabaseConfig._SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+            DatabaseConfig._SessionLocal = sessionmaker(
+                autocommit=False,
+                autoflush=False,
+                bind=engine,
+            )
         return DatabaseConfig._SessionLocal()
-
-    DUCKDB_PATH = "analytics.duckdb"
-
-    @staticmethod
-    def get_duckdb_connection():
-        return duckdb.connect(DatabaseConfig.DUCKDB_PATH)
